@@ -1,0 +1,25 @@
+MATCH(n) RETURN n                                           =>      return all nodes in a graph
+
+CREATE (n)                                                  =>      create an empty node
+
+MATCH(n) DELETE n                                           =>      delete all nodes
+
+CREATE (n:Person)                                           =>      create node of type Person
+
+MATCH(n:Person) DELETE n                                    =>      delete all nodes of type Person
+
+CREATE (n:Person{name:'chris', favoritecolor:'blue'})       =>      properties
+
+MATCH(n) RETURN n LIMIT 4                                   =>      limit query result to 4 nodes
+
+//  join
+MATCH (s:School), (p:Person)
+WHERE s.name = 'LSU' AND p.name = 'othman'
+RETURN s,p
+
+//  create relationship between s and p
+MATCH (s:School), (p:Person)
+WHERE s.name = 'LSU' AND p.name = 'othman'
+CREATE (p)-[stu:STUDIED_AT]->(s)
+
+MATCH(n) DETACH DELETE n                                    =>      delete all nodes with their relationships
